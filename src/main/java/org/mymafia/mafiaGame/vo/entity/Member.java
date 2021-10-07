@@ -35,10 +35,8 @@ public class Member {
     }
 
     @Builder
-
-    public Member(Long memberNumber, String memberId, String memberPw, String memberName,
+    public Member(String memberId, String memberPw, String memberName,
                   String memberEmail, Role memberRole) {
-        this.memberNumber = memberNumber;
         this.memberId = memberId;
         this.memberPw = memberPw;
         this.memberName = memberName;
