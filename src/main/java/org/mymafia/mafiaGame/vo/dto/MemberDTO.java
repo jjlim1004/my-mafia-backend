@@ -12,10 +12,10 @@ public class MemberDTO {
 
     private String memberPw;
 
-    private String name;
+    private String memberName;
 
     private String email;
 
-    private Role role;
+    private Role memberRole;
 
 }

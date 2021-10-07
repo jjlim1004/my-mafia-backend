@@ -32,13 +32,13 @@ public class MemberRepositoryTest {
         memberRepository.save(Member.builder()
                         .memberId(testId)
                         .memberPw(testPw)
-                        .name(testName).build());
+                        .build());
 
         List<Member> memberList = memberRepository.findAll();
 
         Member member  = memberList.get(0);
         assertThat(member.getMemberId()).isEqualTo(testId);
         assertThat(member.getMemberPw()).isEqualTo(testPw);
-        assertThat(member.getName()).isEqualTo(testName);
+        
     }
 }
