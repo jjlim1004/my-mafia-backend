@@ -19,27 +19,30 @@ public class Member {
     @Column(nullable=false)
     private String memberPw;
 
-    @Column(nullable=false)
-    private String name;
+    @Column
+    private String memberName;
 
     @Column
-    private String email;
+    private String memberEmail;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role memberRole;
 
 
     public String getRoleKey(){
-        return this.role.getKey();
+        return this.memberRole.getKey();
     }
 
     @Builder
-    public Member(Long memberNumber, String memberId, String memberPw, String name, Role role) {
+
+    public Member(Long memberNumber, String memberId, String memberPw, String memberName,
+                  String memberEmail, Role memberRole) {
         this.memberNumber = memberNumber;
         this.memberId = memberId;
         this.memberPw = memberPw;
-        this.name = name;
-        this.role = role;
+        this.memberName = memberName;
+        this.memberEmail = memberEmail;
+        this.memberRole = memberRole;
     }
 }
