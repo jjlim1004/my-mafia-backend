@@ -39,6 +39,6 @@ public class MemberRepositoryTest {
         Member member  = memberList.get(0);
         assertThat(member.getMemberId()).isEqualTo(testId);
         assertThat(member.getMemberPw()).isEqualTo(testPw);
-        
+
     }
 }
