@@ -27,7 +27,7 @@ public class MemberRepositoryTest {
     public void memberInsert(){
         String testId = "jjlim1004";
         String testPw = "jjlim1004";
-        String testName = "jjlim";
+
 
         memberRepository.save(Member.builder()
                         .memberId(testId)
