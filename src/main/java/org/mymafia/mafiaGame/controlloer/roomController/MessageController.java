@@ -1,4 +1,4 @@
-package org.mymafia.mafiaGame.controlloer;
+package org.mymafia.mafiaGame.controlloer.roomController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,9 @@ import java.util.List;
 public class MessageController extends Socket {
     private static final List<Session> session = new ArrayList<>();
 
-    @GetMapping("/")
+    @GetMapping("/websocket")
     public String index(){
-        return "index.html";
+        return "websocket.html";
     }
 
     @OnOpen
