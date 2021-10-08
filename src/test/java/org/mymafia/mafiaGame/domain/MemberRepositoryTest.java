@@ -3,6 +3,7 @@ package org.mymafia.mafiaGame.domain;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mymafia.mafiaGame.vo.dto.Role;
 import org.mymafia.mafiaGame.vo.entity.Member;
 import org.mymafia.mafiaGame.vo.entity.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,15 @@ public class MemberRepositoryTest {
 
     @Test
     public void memberInsert(){
-        String testId = "jjlim1004";
-        String testPw = "jjlim1004";
+        String testId = "jjlim1006";
+        String testPw = "jjlim1006";
+        Role role = Role.GUEST;
 
 
         memberRepository.save(Member.builder()
                         .memberId(testId)
                         .memberPw(testPw)
+                        .memberRole(role)
                         .build());
 
         List<Member> memberList = memberRepository.findAll();
