@@ -19,10 +19,10 @@ public class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-//    @After
-//    public void cleanup(){
-//        memberRepository.deleteAll();
-//    }
+    @After
+    public void cleanup(){
+        memberRepository.deleteAll();
+    }
 
     @Test
     public void memberInsert(){
