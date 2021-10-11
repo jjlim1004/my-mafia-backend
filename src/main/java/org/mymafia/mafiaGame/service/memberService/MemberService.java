@@ -1,4 +1,4 @@
-package org.mymafia.mafiaGame.service;
+package org.mymafia.mafiaGame.service.memberService;
 
 
 import org.mymafia.mafiaGame.vo.dto.MemberDTO;
