@@ -4,13 +4,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 @Service
 public class KakaoAPI {
 
+    //access token을 카카오에서 얻기위한 메서드
     public String getAccessToken(String authorize_code){
         String access_token = "";
         String refresh_token = "";
@@ -67,5 +70,24 @@ public class KakaoAPI {
             e.printStackTrace();
         }
         return access_token;
+    }
+
+    public HashMap<String, Object> getUserInfo(String access_token){
+        // 요청하는 클라이언트마다 가진 정보가 다를 수 있어 HashMap 타입으로 선언
+        HashMap<String, Object> userInfo = new HashMap<>();
+        String reqestURL = "https://kapi.kakao.com/v2/user/me";
+
+        try {
+            URL url = new URL(reqestURL);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            // 요청에 필요한 Header 에 포함될 내용
+            connection.setRequestProperty("Authorization", "Bearer" + access_token);
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 }
