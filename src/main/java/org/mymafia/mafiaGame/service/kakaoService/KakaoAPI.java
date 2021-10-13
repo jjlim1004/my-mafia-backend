@@ -1,6 +1,7 @@
 package org.mymafia.mafiaGame.service.kakaoService;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.stereotype.Service;
 
@@ -75,19 +76,45 @@ public class KakaoAPI {
     public HashMap<String, Object> getUserInfo(String access_token){
         // 요청하는 클라이언트마다 가진 정보가 다를 수 있어 HashMap 타입으로 선언
         HashMap<String, Object> userInfo = new HashMap<>();
-        String reqestURL = "https://kapi.kakao.com/v2/user/me";
+        String requestURL = "https://kapi.kakao.com/v2/user/me";
 
         try {
-            URL url = new URL(reqestURL);
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            URL url = new URL(requestURL);
+            HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+            //기본적으로 HttpsURLConnection은 GET 방식을 사용한다.
             connection.setRequestMethod("POST");
             // 요청에 필요한 Header 에 포함될 내용
             connection.setRequestProperty("Authorization", "Bearer" + access_token);
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("responseCode: " + responseCode);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String line ="";
+            String result ="";
+
+            while((line = br.readLine()) != null){
+                result += line;
+            }
+
+            System.out.println("responseBody : " + result);
+
+            JsonParser jsonParser = new JsonParser();
+            JsonElement element = jsonParser.parse(result);
+            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+            JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+
+            String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+            String email = kakao_account.getAsJsonObject().get("email").getAsString();
+
+            userInfo.put("nickname",nickname);
+            userInfo.put("email",email);
 
 
         }catch (IOException e){
             e.printStackTrace();
         }
-
+        return userInfo;
     }
 }
