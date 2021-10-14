@@ -82,9 +82,9 @@ public class KakaoAPI {
             URL url = new URL(requestURL);
             HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
             //기본적으로 HttpsURLConnection은 GET 방식을 사용한다.
-            connection.setRequestMethod("POST");
+//            connection.setRequestMethod("POST");
             // 요청에 필요한 Header 에 포함될 내용
-            connection.setRequestProperty("Authorization", "Bearer" + access_token);
+            connection.setRequestProperty("Authorization", "Bearer " + access_token);
 
             int responseCode = connection.getResponseCode();
             System.out.println("responseCode: " + responseCode);
