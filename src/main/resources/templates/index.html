@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- 카카오 로그인 테스트를 위해 일시적으로 주석 처리 했음
     <form action="/login" method="post" id="loginForm">
         <label for="loginId">아이디</label>
         <input type="text" name="id" id="loginId">
@@ -15,30 +16,17 @@
         <input type="submit" value="로그인">
         <input type="button" value="회원 가입">
     </form>
--->
-<div th:if="${userId == null}">
-    <a href=https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9a58734637b33bc4afab88cc9e71fe77&redirect_uri=http://localhost:8080/login>
-        <img th:src="@{images/kakao_login_medium_narrow.png}"/>
-    </a>
-</div>
-<div th:unless="${userId != null}">
-    로그인 성공
-    <input type="button" value="로그아웃" onclick="location.href='/logout'">
-</div>
-
-
 
     <script>
-    /*
        const loginForm = $('#loginForm');
 
        $(function(){
             $('#loginForm input[type="button"]').on('click',function(){
                 loginForm.attr('action','/join');
+                loginForm.attr('method','get');
                 loginForm.submit();
             });
        });
-    */
     </script>
 </body>
 </html>
