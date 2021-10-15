@@ -1,6 +1,8 @@
 package org.mymafia.mafiaGame.controlloer.commonController;
 
 import org.mymafia.mafiaGame.service.kakaoService.KakaoAPI;
+import org.mymafia.mafiaGame.service.memberService.MemberService;
+import org.mymafia.mafiaGame.vo.dto.MemberDTO;
 import org.mymafia.mafiaGame.vo.entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,15 +20,24 @@ public class loginController {
     @Autowired
     private KakaoAPI kakaoAPI;
 
+    @Autowired
+    private MemberService memberService;
+
     @GetMapping("/")
     public String index(){
-        return "index";
+        return "login";
     }
 
     @GetMapping("/login")
     public String loginPage(Member member , HttpSession session){
 
-        return "index";
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(MemberDTO member, HttpSession session){
+
+        return "lobbyPage";
     }
 
     @GetMapping("/join")
@@ -35,10 +46,11 @@ public class loginController {
 
     @PostMapping("/join")
     public String memberJoin(){
-        return "lobbyPage";
+
+        return "login";
     }
 
-    @GetMapping("/kakao")
+    @GetMapping("/myPage")
     public void getKakaoinfo(@RequestParam("code") String code , HttpSession session){
         String access_token = kakaoAPI.getAccessToken(code);
 
@@ -61,5 +73,6 @@ public class loginController {
 
         return "index";
     }
+
 }
 
