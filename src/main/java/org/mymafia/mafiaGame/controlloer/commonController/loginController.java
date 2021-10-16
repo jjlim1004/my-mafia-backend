@@ -45,8 +45,8 @@ public class loginController {
     }
 
     @PostMapping("/join")
-    public String memberJoin(){
-
+    public String memberJoin(MemberDTO memberDto){
+        memberService.Join(memberDto);
         return "login";
     }
 

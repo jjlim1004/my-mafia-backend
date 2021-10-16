@@ -5,7 +5,10 @@ import org.mymafia.mafiaGame.vo.dto.Role;
 import org.mymafia.mafiaGame.vo.entity.Member;
 import org.mymafia.mafiaGame.vo.entity.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class MemberServiceImpl implements MemberService{
 
     @Autowired
@@ -14,7 +17,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public int Join(MemberDTO memberDto) {
-        memberDto.setMemberRole(Role.USER);
+        memberDto.setMemberRole(Role.GUEST);
         Member member = Member.builder()
                 .memberId(memberDto.getMemberId())
                 .memberPw(memberDto.getMemberPw())
