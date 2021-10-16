@@ -15,6 +15,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.httpBasic().disable();
+        //403 에러를 방지하기 위해 csrf 해제
+        httpSecurity.cors().and();
+        httpSecurity.csrf().disable();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**","/script/**","image/**");
     }
 
 }
