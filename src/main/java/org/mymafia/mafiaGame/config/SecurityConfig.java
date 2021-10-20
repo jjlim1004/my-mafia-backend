@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //HttpSecurity를 이용한 configure : 특정 http 요청에 대해 웹 기반 보안을 구성할 수 있다.
+    //기본적으로 모든 요청에 적용된다만 requestMatcher를 사용해 사용을 제한 할 수 있다.
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.httpBasic().disable();
