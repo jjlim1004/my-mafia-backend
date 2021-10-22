@@ -16,6 +16,7 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MemberRepositoryTest {
 
+    /*
     @Autowired
     MemberRepository memberRepository;
 
@@ -44,4 +45,5 @@ public class MemberRepositoryTest {
         assertThat(member.getMemberPw()).isEqualTo(testPw);
 
     }
+    */
 }
