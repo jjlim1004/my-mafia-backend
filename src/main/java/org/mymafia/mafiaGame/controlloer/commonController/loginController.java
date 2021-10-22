@@ -51,6 +51,10 @@ public class loginController {
     }
 
     @GetMapping("/myPage")
+    public void goMyPage(){
+    }
+
+    @PostMapping("/myPage")
     public void getKakaoinfo(@RequestParam("code") String code , HttpSession session){
         String access_token = kakaoAPI.getAccessToken(code);
 

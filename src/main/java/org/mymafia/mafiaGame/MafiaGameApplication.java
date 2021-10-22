@@ -27,11 +27,5 @@ public class MafiaGameApplication {
 		SpringApplication.run(MafiaGameApplication.class, args);
 	}
 
-	//메세지를 내보내는 메소드(???)
-	@Bean
-	public ServerEndpointExporter serverEndpointExporter(){
-		return new ServerEndpointExporter();
-	}
-
 
 }
