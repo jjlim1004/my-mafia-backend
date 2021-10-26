@@ -8,10 +8,11 @@ public interface MemberService {
 
      int Join(MemberDTO memberDto);
 
-     int login(Member member);
+     int login(MemberDTO member);
 
      int logout();
 
      int deleteMember(Long memberNumber);
+
 
 }

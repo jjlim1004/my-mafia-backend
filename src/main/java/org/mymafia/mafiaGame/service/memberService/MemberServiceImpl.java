@@ -30,8 +30,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public int login(Member member) {
-
+    public int login(MemberDTO member) {
+        memberRepository.
         return 0;
     }
 
