@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -44,7 +45,8 @@ public class loginController {
     public void goToMemberJoin(){
     }
 
-    @PostMapping("/join")
+    @PostMapping(value = "/join", produces ="application/json")
+    @ResponseBody
     public String memberJoin(MemberDTO memberDto){
         memberService.Join(memberDto);
         return "login";
