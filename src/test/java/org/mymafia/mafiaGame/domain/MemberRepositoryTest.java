@@ -3,6 +3,9 @@ package org.mymafia.mafiaGame.domain;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mymafia.mafiaGame.service.memberService.MemberService;
+import org.mymafia.mafiaGame.service.memberService.MemberServiceImpl;
+import org.mymafia.mafiaGame.vo.dto.MemberDTO;
 import org.mymafia.mafiaGame.vo.dto.Role;
 import org.mymafia.mafiaGame.vo.entity.Member;
 import org.mymafia.mafiaGame.vo.entity.MemberRepository;
@@ -19,6 +22,9 @@ public class MemberRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    MemberService memberService;
 
     @After
     public void cleanup(){
@@ -43,6 +49,19 @@ public class MemberRepositoryTest {
         Member member  = memberList.get(0);
         assertThat(member.getMemberId()).isEqualTo(testId);
         assertThat(member.getMemberPw()).isEqualTo(testPw);
+
+    }
+
+    @Test
+    public void memberLogin(){
+        String testId = "j";
+        String testPw = "j";
+
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMemberId(testId);
+        memberDTO.setMemberId(testPw);
+
+        memberService.login(memberDTO);
 
     }
 
