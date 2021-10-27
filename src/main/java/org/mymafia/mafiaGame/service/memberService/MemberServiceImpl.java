@@ -24,10 +24,10 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public String Join(MemberDTO memberDto) {
+    public MemberDTO Join(MemberDTO memberDto) {
         memberDto.setMemberRole(Role.GUEST);
         Member existMember = memberIsExist(memberDto);
-        if(existMember != null){
+        if(existMember == null){
             Member member = Member.builder()
                     .memberId(memberDto.getMemberId())
                     .memberPw(memberDto.getMemberPw())
@@ -36,9 +36,9 @@ public class MemberServiceImpl implements MemberService{
                     .memberName(memberDto.getMemberName())
                     .build();
             memberRepository.save(member);
-            return "success";
+            return memberDto;
         }
-        return "fail";
+        return null;
     }
 
     @Override
