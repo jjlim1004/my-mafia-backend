@@ -5,6 +5,9 @@ import org.mymafia.mafiaGame.service.memberService.MemberService;
 import org.mymafia.mafiaGame.vo.dto.MemberDTO;
 import org.mymafia.mafiaGame.vo.entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,9 +39,10 @@ public class loginController {
     }
 
     @PostMapping("/login")
+    @ResponseBody
     public String login(MemberDTO member, HttpSession session){
-        memberService.login(member);
-        return "login";
+        String isLogin = memberService.login(member);
+        return isLogin;
     }
 
     @GetMapping("/join")
@@ -48,9 +52,13 @@ public class loginController {
     @PostMapping(value = "/join", produces ="application/json")
     @ResponseBody
     //ResponseEntity 로 변경
-    public String memberJoin(MemberDTO memberDto){
-        memberService.Join(memberDto);
-        return "login";
+    public ResponseEntity<MemberDTO> memberJoin(MemberDTO memberDto){
+        MemberDTO joinMember = memberService.Join(memberDto);
+        if(joinMember != null){
+            return new ResponseEntity(joinMember,HttpStatus.valueOf(200));
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        }
     }
 
     @GetMapping("/myPage")
