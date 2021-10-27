@@ -4,8 +4,14 @@ import org.mymafia.mafiaGame.vo.dto.MemberDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface MemberRepository extends JpaRepository<Member,Long> {
 
-    @Query("select member from Member member where member.memberID =?1")
-    Member findByMemberId(MemberDTO memberDTO);
+    //List<Member> findByMemberId(String memberId);
+    Member findByMemberId(String memberId);
+
+
+
 }
