@@ -2,13 +2,12 @@ package org.mymafia.mafiaGame.service.memberService;
 
 
 import org.mymafia.mafiaGame.vo.dto.MemberDTO;
-import org.mymafia.mafiaGame.vo.entity.Member;
 
 public interface MemberService {
 
-     int Join(MemberDTO memberDto);
+     String Join(MemberDTO memberDto);
 
-     int login(MemberDTO member);
+     String login(MemberDTO member);
 
      int logout();
 

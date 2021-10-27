@@ -14,25 +14,46 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     MemberRepository memberRepository;
 
-
-    @Override
-    public int Join(MemberDTO memberDto) {
-        memberDto.setMemberRole(Role.GUEST);
-        Member member = Member.builder()
-                .memberId(memberDto.getMemberId())
-                .memberPw(memberDto.getMemberPw())
-                .memberRole(memberDto.getMemberRole())
-                .memberEmail(memberDto.getEmail())
-                .memberName(memberDto.getMemberName())
-                .build();
-        memberRepository.save(member);
-        return 0;
+    public Member memberIsExist(MemberDTO memberDto){
+        Member member  = memberRepository.findByMemberId(memberDto.getMemberId());
+        if(member != null){
+            return member;
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public int login(MemberDTO member) {
-        memberRepository.
-        return 0;
+    public String Join(MemberDTO memberDto) {
+        memberDto.setMemberRole(Role.GUEST);
+        Member existMember = memberIsExist(memberDto);
+        if(existMember != null){
+            Member member = Member.builder()
+                    .memberId(memberDto.getMemberId())
+                    .memberPw(memberDto.getMemberPw())
+                    .memberRole(memberDto.getMemberRole())
+                    .memberEmail(memberDto.getEmail())
+                    .memberName(memberDto.getMemberName())
+                    .build();
+            memberRepository.save(member);
+            return "success";
+        }
+        return "fail";
+    }
+
+    @Override
+    public String login(MemberDTO memberDto) {
+        //리팩토링 시 Optional 로 바꿔보기
+        Member existMember = memberIsExist(memberDto);
+        if(existMember != null){
+            boolean isMember = memberDto.getMemberPw().equals(existMember.getMemberPw());
+            if(isMember){
+                return "success";
+            }else{
+                return "pw fail";
+            }
+        }
+        return "id fail";
     }
 
     @Override

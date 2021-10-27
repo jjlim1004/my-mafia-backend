@@ -37,8 +37,8 @@ public class loginController {
 
     @PostMapping("/login")
     public String login(MemberDTO member, HttpSession session){
-
-        return "lobbyPage";
+        memberService.login(member);
+        return "login";
     }
 
     @GetMapping("/join")
@@ -47,6 +47,7 @@ public class loginController {
 
     @PostMapping(value = "/join", produces ="application/json")
     @ResponseBody
+    //ResponseEntity 로 변경
     public String memberJoin(MemberDTO memberDto){
         memberService.Join(memberDto);
         return "login";
