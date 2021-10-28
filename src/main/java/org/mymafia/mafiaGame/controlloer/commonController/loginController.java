@@ -47,6 +47,7 @@ public class loginController {
 
     @GetMapping("/join")
     public void goToMemberJoin(){
+        //커밋 실험용
     }
 
     @PostMapping(value = "/join", produces ="application/json")
